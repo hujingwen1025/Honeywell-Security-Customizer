@@ -1,0 +1,5 @@
+﻿SV-DOORACCESS-0
+eventuser
+z216uhmuv9bk
+./events.txt
+nodebug

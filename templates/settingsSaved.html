@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>霍尼韦尔事件管理端口</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f0f0f0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            h1 {
+                color: #333;
+                text-align: center;
+            }
+            .container {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                width: 1000px;
+                text-align: center;
+            }
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px;
+            }
+            button {
+                width: 30%;
+                padding: 10px;
+                background-color: #007bff;
+                border: none;
+                border-radius: 4px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #0056b3;
+            }
+            .logs {
+                width: 98%;
+                height: 400px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                padding: 10px;
+                overflow-y: scroll;
+                background-color: #f9f9f9;
+                text-align: left;
+				resize: none;
+            }
+            .alarmArmed {
+                background-color: #fd1500;
+            }
+            .alarmArmed:hover {
+                background-color: #be1101
+            }
+            .alarmUnarmed {
+                background-color: #81332c;
+            }
+            .alarmUnarmed {
+                background-color: #652822;
+            }
+			.messageCont {
+				font-size: 7.5px;
+			}
+			.greenText {
+				color: #00FF00;
+			}
+			.redText {
+				color: #FF0000;
+			}
+        </style>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <h1>霍尼韦尔事件管理端口 - 事件设置</h1>
+            <hr>
+            <div class="buttons">
+                <button onclick="location.href='/settings'">事件设置</button>
+                <button onclick="location.href='/control'">控制面板</button>
+            </div>
+			{% if error %}
+				<h3 class="redText">{{ error }}</h3>
+			{% endif %}
+			<h3 class="greenText">设置更改成功</h3>
+			<div class="messageCont">
+				<h3 class="redText">在更改设置模式下警报将不会播报</h3>
+				<h3>请严格使用以下格式定义事件</h3>
+				<h3>报警监测器名称/报警信息/启用时间段/停用时间段</h3>
+				<h3>如需24小时启用请使用00:00:00/23:59:59</h3>
+				<p>例：</p>
+				<p>1号宿舍楼西侧消防梯/本地授权/00:00:00/23:59:59</p>
+				<p>1号宿舍楼西侧消防梯/本地授权/09:05:01/14:07:02</p>
+			</div>
+			<form method="POST">
+				<textarea type="text" class="logs" name="content">{{ content }}</textarea>
+				<input type="submit" value="保存更改">
+			</form>
+            <p><a href="/signout">退出登录</a></p>
+        </div>
+    </body>
+</html>

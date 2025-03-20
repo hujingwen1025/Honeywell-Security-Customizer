@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霍尼韦尔事件管理 - 事件警告</title>
+    <style>
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .alert-title {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2.5rem;
+            color: #333;
+            margin: 0;
+            font-weight: bold;
+            color: #FF0000;
+        }
+
+        .alert-body {
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .bodyHead {
+            font-weight: bold;
+        }
+
+        .bodyInfo {
+            font-size: 20px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+        <div class="alert-header">
+            <h2 class="alert-title">监测到发生事件</h2>
+        </div>
+
+        <div class="alert-body">
+            <p class="bodyHead">霍尼韦尔检测器发现定义事件已发生</p>
+            <p class="bodyInfo">{{ alertLocation }} - {{ alertEvent }} - {{ alertTime }}</p>
+        </div>
+        <audio controls autoplay hidden loop>
+            <source src="/static/resource/alert.mp3" type="audio/mp3">
+        </audio>
+</html>
